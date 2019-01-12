@@ -7,19 +7,40 @@ class App extends Component {
 
     this.state = {
       counterValue: 0,
+      errorMessage: '',
     };
 
     this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
   }
 
   handleIncrement() {
+    const { errorMessage, counterValue: currentCounterValue } = this.state;
+
+    const newState = { counterValue: currentCounterValue + 1 };
+
+    if (errorMessage) {
+      newState.errorMessage = '';
+    }
+
+    this.setState(newState);
+  }
+
+  handleDecrement() {
+    const { counterValue: currentCounterValue } = this.state;
+
+    if (currentCounterValue === 0) {
+      this.setState({ errorMessage: 'The counter can not go below zero.' })
+      return;
+    }
+
     this.setState({
-      counterValue: this.state.counterValue + 1,
+      counterValue: currentCounterValue - 1,
     });
   }
 
   render() {
-    const { counterValue } = this.state;
+    const { counterValue, errorMessage } = this.state;
 
     return (
       <div className="app" data-test="component-app">
@@ -30,8 +51,24 @@ class App extends Component {
           onClick={this.handleIncrement}
           data-test="increment-button"
         >
-          Increment counter
+          Increment
         </button>
+        <button
+          data-test="decrement-button"
+          onClick={this.handleDecrement}
+        >
+          Decrement
+        </button>
+
+        {errorMessage && (
+          <p
+            className="error-text"
+            data-test="error-message"
+          >
+            { errorMessage }
+          </p>
+        )}
+
       </div>
     )
   }
