@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 class App extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       counterValue: 0,
     };
@@ -20,12 +20,16 @@ class App extends Component {
 
   render() {
     const { counterValue } = this.state;
+
     return (
-      <div className="app">
-        <h1>
+      <div className="app" data-test="component-app">
+        <h1 data-test="counter-display">
           The count is { counterValue }
         </h1>
-        <button onClick={this.handleIncrement}>
+        <button
+          onClick={this.handleIncrement}
+          data-test="increment-button"
+        >
           Increment counter
         </button>
       </div>
