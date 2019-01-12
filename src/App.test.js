@@ -7,9 +7,15 @@ Enzyme.configure({
   adapter: new EnzymeAdapter()
 });
 
-const setup = (props = {}, state = null) => (
-  shallow(<App {...props} />)
-);
+const setup = (props = {}, state = null) => {
+  const wrapper = shallow(<App {...props} />);
+
+  if (state) {
+    wrapper.setState(state);
+  }
+
+  return wrapper;
+};
 
 const findByTestAttr = (wrapper, value) => (
   wrapper.find(`[data-test="${value}"]`)
@@ -37,5 +43,28 @@ describe('Test <App /> component', () => {
     const counter = findByTestAttr(wrapper, 'counter-display');
 
     expect(counter.length).toBe(1);
+  });
+
+  test('Counter starts at 0', () => {
+    const initialCounterState = wrapper.state('counterValue');
+
+    expect(initialCounterState).toBe(0);
+  });
+
+  test('Clicking the button increments counter display', () => {
+    const counterValue = 7;
+    wrapper.setState({ counterValue });
+
+    const button = findByTestAttr(wrapper, 'increment-button');
+    button.simulate('click');
+    wrapper.update();
+
+    const counterStateValue = wrapper.state('counterValue');
+
+    expect(counterStateValue).toBe(counterValue + 1);
+
+    const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+
+    expect(counterDisplay.text()).toContain(counterValue + 1);
   });
 })
