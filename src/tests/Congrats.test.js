@@ -2,13 +2,18 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Congrats from '../components/Congrats';
-import { findByTestAttr } from '../../test/testUtils';
+import { findByTestAttr, checkProps } from '../../test/testUtils';
 
 Enzyme.configure({
   adapter: new EnzymeAdapter(),
 });
 
-const setup = (props = {}) => shallow(<Congrats {...props} />);
+const defaultProps = { success: false };
+
+const setup = (props = {}) => {
+  const setupProps = {...defaultProps, ...props};
+  return shallow(<Congrats {...setupProps} />);
+};
 
 describe('Congrats component', () => {
   test('Renders without errors', () => {
@@ -28,4 +33,9 @@ describe('Congrats component', () => {
     const message = findByTestAttr(wrapper, 'congrats-message');
     expect(message.text().length).toBeTruthy();
   });
+
+  test('Does not throw a warning with expected props', () => {
+    const expectedProps = { success: false };
+    checkProps(Congrats, expectedProps);
+  })
 });
