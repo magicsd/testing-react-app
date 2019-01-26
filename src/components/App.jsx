@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 
+import GuessedWords from './GuessedWords';
+import Congrats from './Congrats';
+
 class App extends Component {
   render() {
     return (
-      <div>
-        React App
+      <div className="container">
+        <h1 className="text-center">Jotto</h1>
+        <Congrats success={true} />
+        <GuessedWords guessedWords={[{ guessedWord: 'train', letterMatchCount: 3 }]} />
       </div>
     )
   }

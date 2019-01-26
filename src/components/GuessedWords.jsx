@@ -13,8 +13,8 @@ const GuessedWords = ({ guessedWords }) => {
   } else {
     contents = (
       <div data-test="guessed-words">
-        <h3>Guessed Words</h3>
-        <table>
+        <h3 className="text-center">Guessed Words</h3>
+        <table className="table table-striped">
           <thead>
           <tr>
             <th>Guess</th>
