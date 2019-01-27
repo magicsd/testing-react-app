@@ -13,20 +13,22 @@ class Input extends Component {
       ? null
       : (
         <form className="form-inline">
-          <input
-            data-test="input-box"
-            className="mb-2 mx-sm-3"
-            id="word-guess"
-            type="text"
-            placeholder="Enter guess.."
-          />
-          <button
-            data-test="submit-button"
-            className="btn btn-primary"
-            type="submit"
-          >
-            Submit
-          </button>
+          <div className="form-group">
+            <input
+              data-test="input-box"
+              className="form-control"
+              id="word-guess"
+              type="text"
+              placeholder="Enter guess.."
+            />
+            <button
+              data-test="submit-button"
+              className="btn btn-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       );
 

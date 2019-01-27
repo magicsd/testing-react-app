@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
 import { connect } from 'react-redux';
 
 import GuessedWords from './GuessedWords';
@@ -7,7 +6,12 @@ import Congrats from './Congrats';
 import Input from './Input';
 import {getSecretWord} from '../actions';
 
-class App extends Component {
+export class UnconnectedApp extends Component {
+  componentDidMount() {
+    const { getSecretWord } = this.props;
+    getSecretWord();
+  }
+
   render() {
     const { success, guessWords, secretWord } = this.props;
 
@@ -28,4 +32,4 @@ const mapStateToProps = ({ success, guessWords, secretWord }) => ({
     secretWord,
 });
 
-export default hot(module)(connect(mapStateToProps, ({ getSecretWord }))(App));
+export default connect(mapStateToProps, ({ getSecretWord }))(UnconnectedApp);
