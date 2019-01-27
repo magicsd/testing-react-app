@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GuessedWords = ({ guessedWords }) => {
+const GuessedWords = ({ guessWords }) => {
   let contents;
 
-  if (!guessedWords.length) {
+  if (!guessWords.length) {
     contents = (
       <span data-test="guess-instructions">
         Try to guess the secret word!
@@ -22,7 +22,7 @@ const GuessedWords = ({ guessedWords }) => {
           </tr>
           </thead>
           <tbody>
-          { guessedWords.map(word => (
+          { guessWords.map(word => (
             <tr key={word.guessedWord} data-test="guessed-word">
               <td>
                 { word.guessedWord }
@@ -46,7 +46,7 @@ const GuessedWords = ({ guessedWords }) => {
 };
 
 GuessedWords.propTypes = {
-  guessedWords: PropTypes.arrayOf(
+  guessWords: PropTypes.arrayOf(
     PropTypes.shape({
       guessedWord: PropTypes.string.isRequired,
       letterMatchCount: PropTypes.number.isRequired,

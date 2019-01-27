@@ -4,7 +4,7 @@ import { findByTestAttr, checkProps } from '../../test/testUtils';
 import GuessedWords from '../components/GuessedWords';
 
 const defaultProps = {
-  guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
+  guessWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
 };
 
 const setup = (props = {}) => {
@@ -21,7 +21,7 @@ describe('GuessedWords test', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = setup({ guessedWords: [] });
+      wrapper = setup({ guessWords: [] });
     });
 
     test('Renders without errors', () => {
@@ -36,7 +36,7 @@ describe('GuessedWords test', () => {
   });
 
   describe('If there are words guessed', () => {
-    const guessedWords = [
+    const guessWords = [
       { guessedWord: 'train', letterMatchCount: 3 },
       { guessedWord: 'agile', letterMatchCount: 1 },
       { guessedWord: 'party', letterMatchCount: 5 },
@@ -45,7 +45,7 @@ describe('GuessedWords test', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = setup({ guessedWords })
+      wrapper = setup({ guessWords })
     });
 
     test('Renders without errors', () => {
@@ -60,7 +60,7 @@ describe('GuessedWords test', () => {
 
     test('Renders correct number of guessed words', () => {
       const guessedWordsNodes = findByTestAttr(wrapper, 'guessed-word');
-      expect(guessedWordsNodes.length).toBe(guessedWords.length);
+      expect(guessedWordsNodes.length).toBe(guessWords.length);
     });
   });
 });
