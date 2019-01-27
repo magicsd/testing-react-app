@@ -29,6 +29,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "jest-enzyme": "^7.0.1",
+    "moxios": "^0.4.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.4",
@@ -37,8 +38,10 @@
   },
   "dependencies": {
     "ajv": "^6.6.2",
+    "axios": "^0.18.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "express-app": "0.0.9",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
