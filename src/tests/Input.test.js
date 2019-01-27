@@ -39,23 +39,26 @@ describe('Test Input Component', () => {
     });
 
     describe('Word has been guessed', () => {
-      test('Renders without error', () => {
+      let wrapper;
 
+      beforeEach(() => {
+        wrapper = setup({ success: true });
+      });
+
+      test('Renders without error', () => {
+        const component = findByTestAttr(wrapper, 'component-input');
+        expect(component.length).toBe(1);
       });
 
       test('Renders no input box', () => {
-
+        const input = findByTestAttr(wrapper, 'input-box');
+        expect(input.length).toBe(0);
       });
 
       test('Renders no submit button', () => {
-
+        const sumbit = findByTestAttr(wrapper, 'submit-button');
+        expect(sumbit.length).toBe(0);
       });
-    });
-  });
-
-  describe('Update the state', () => {
-    test('', () => {
-
     });
   });
 });
