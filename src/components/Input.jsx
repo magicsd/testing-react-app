@@ -4,9 +4,32 @@ import PropTypes from 'prop-types';
 
 class Input extends Component {
   render() {
-    return (
-      <div>
+    const { success } = this.props;
 
+    const contents = success
+      ? null
+      : (
+        <form className="form-inline">
+          <input
+            data-test="input-box"
+            className="mb-2 mx-sm-3"
+            id="word-guess"
+            type="text"
+            placeholder="Enter guess.."
+          />
+          <button
+            data-test="submit-button"
+            className="btn btn-primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      );
+
+    return (
+      <div data-test="component-input">
+        { contents }
       </div>
     );
   }
@@ -14,6 +37,6 @@ class Input extends Component {
 
 Input.propTypes = {};
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({ success }) => ({ success });
 
 export default connect(mapStateToProps)(Input);
