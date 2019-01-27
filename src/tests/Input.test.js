@@ -1,11 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 import Input from '../components/Input';
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
+
   return mount((
     <Provider store={store}>
       <Input />

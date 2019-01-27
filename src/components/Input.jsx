@@ -1,6 +1,9 @@
+// libraries
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+// actions
+import { guessWord } from '../actions';
 
 class Input extends Component {
   render() {
@@ -35,8 +38,10 @@ class Input extends Component {
   }
 }
 
-Input.propTypes = {};
+Input.propTypes = {
+  success: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = ({ success }) => ({ success });
 
-export default connect(mapStateToProps)(Input);
+export default connect(mapStateToProps, ({ guessWord }))(Input);
