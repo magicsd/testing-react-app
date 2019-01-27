@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
+    "startBack": "node server/server.js",
     "build": "webpack --mode development",
     "test": "jest --watch"
   },
@@ -36,6 +37,8 @@
   },
   "dependencies": {
     "ajv": "^6.6.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -44,6 +47,7 @@
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "supertest": "^3.4.2"
   }
 }
