@@ -96,6 +96,15 @@ describe('Test Input Component', () => {
         expect(guessWordMock.mock.calls.length).toBe(1);
         expect(guessWordMock.mock.calls[0][0]).toBe(guessWord);
       });
+
+      test('Input Box is cleared after submit button click', () => {
+        const inputBox = findByTestAttr(wrapper, 'input-box');
+        inputBox.simulate('change', { target: { value: 'train'} });
+        const submitButton = findByTestAttr(wrapper, 'submit-button');
+        submitButton.simulate('click', { preventDefault: () => {} });
+        const state = wrapper.state();
+        expect(state).toEqual({ inputValue: '' });
+      });
     })
   });
 });

@@ -32,6 +32,8 @@ export class UnconnectedInput extends Component {
     }
 
     guessWord(inputValue);
+
+    this.setState({ inputValue: '' });
   };
 
   render() {
