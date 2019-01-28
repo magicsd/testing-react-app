@@ -78,11 +78,12 @@ describe('Test Input Component', () => {
         )
       });
 
-      test('guessWord is called on submit button click', () => {
-        const submitButton = findByTestAttr(wrapper, 'submit-button');
-        submitButton.simulate('click');
-        expect(guessWordMock.mock.calls.length).toBe(1);
-      });
+      // It was valid until validation checks applied
+      // test('guessWord is called on submit button click', () => {
+      //   const submitButton = findByTestAttr(wrapper, 'submit-button');
+      //   submitButton.simulate('click', { preventDefault: () => {} });
+      //   expect(guessWordMock.mock.calls.length).toBe(1);
+      // });
 
       test('guessWord is called with input box contents as argument', () => {
         const inputBox = findByTestAttr(wrapper, 'input-box');
@@ -91,7 +92,7 @@ describe('Test Input Component', () => {
         const state = wrapper.state();
         expect(state).toEqual({ inputValue: guessWord });
         const submitButton = findByTestAttr(wrapper, 'submit-button');
-        submitButton.simulate('click');
+        submitButton.simulate('click', { preventDefault: () => {} });
         expect(guessWordMock.mock.calls.length).toBe(1);
         expect(guessWordMock.mock.calls[0][0]).toBe(guessWord);
       });

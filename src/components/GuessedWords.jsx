@@ -22,10 +22,10 @@ const GuessedWords = ({ guessWords }) => {
           </tr>
           </thead>
           <tbody>
-          { guessWords.map(word => (
-            <tr key={word.guessedWord} data-test="guessed-word">
+          { guessWords.map((word, index) => (
+            <tr key={`${word.guessWord}-${index}`} data-test="guessed-word">
               <td>
-                { word.guessedWord }
+                { word.guessWord }
               </td>
               <td>
                 { word.letterMatchCount }
@@ -48,7 +48,7 @@ const GuessedWords = ({ guessWords }) => {
 GuessedWords.propTypes = {
   guessWords: PropTypes.arrayOf(
     PropTypes.shape({
-      guessedWord: PropTypes.string.isRequired,
+      guessWord: PropTypes.string.isRequired,
       letterMatchCount: PropTypes.number.isRequired,
     })
   ).isRequired,

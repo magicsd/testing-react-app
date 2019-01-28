@@ -21,9 +21,15 @@ export class UnconnectedInput extends Component {
     this.setState({ inputValue: target.value });
   }
 
-  handleGuessWord() {
+  handleGuessWord(e) {
+    e.preventDefault();
+
     const { guessWord } = this.props;
     const { inputValue } = this.state;
+
+    if (!inputValue || (inputValue.length !== 5)) {
+      return;
+    }
 
     guessWord(inputValue);
   };
@@ -35,7 +41,7 @@ export class UnconnectedInput extends Component {
     const contents = success
       ? null
       : (
-        <form className="form-inline">
+        <form className="form-inline" onSubmit={this.handleGuessWord}>
           <div className="form-group">
             <input
               data-test="input-box"
@@ -45,12 +51,14 @@ export class UnconnectedInput extends Component {
               placeholder="Enter guess.."
               onChange={this.handleInputChange}
               value={inputValue}
+              maxLength={5}
             />
             <button
               data-test="submit-button"
               className="btn btn-primary"
-              type="submit"
+              type="button"
               onClick={this.handleGuessWord}
+              disabled={!inputValue || (inputValue.length !== 5)}
             >
               Submit
             </button>
