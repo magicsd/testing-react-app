@@ -6,18 +6,18 @@ import { store } from './store'
 import App from 'components/App';
 import 'sass/index.scss'
 
-ReactDOM.render((
-  <Provider store={store}>
-    <App />
-  </Provider>
-), document.getElementById('root'));
+const render = (Component) => {
+  ReactDOM.render((
+    <Provider store={store}>
+      <Component />
+    </Provider>
+  ), document.getElementById('root'));
+};
+
+render(App);
 
 if (module.hot) {
   module.hot.accept('components/App', () => {
-    ReactDOM.render((
-      <Provider store={store}>
-        <App />
-      </Provider>
-    ), document.getElementById('root'));
+    render(App);
   });
 }

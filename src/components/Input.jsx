@@ -5,9 +5,32 @@ import PropTypes from 'prop-types';
 // actions
 import { guessWord } from '../actions';
 
-class Input extends Component {
+export class UnconnectedInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputValue: '',
+    };
+
+    this.handleGuessWord = this.handleGuessWord.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange({ target }) {
+    this.setState({ inputValue: target.value });
+  }
+
+  handleGuessWord() {
+    const { guessWord } = this.props;
+    const { inputValue } = this.state;
+
+    guessWord(inputValue);
+  };
+
   render() {
     const { success } = this.props;
+    const { inputValue } = this.state;
 
     const contents = success
       ? null
@@ -20,11 +43,14 @@ class Input extends Component {
               id="word-guess"
               type="text"
               placeholder="Enter guess.."
+              onChange={this.handleInputChange}
+              value={inputValue}
             />
             <button
               data-test="submit-button"
               className="btn btn-primary"
               type="submit"
+              onClick={this.handleGuessWord}
             >
               Submit
             </button>
@@ -40,10 +66,10 @@ class Input extends Component {
   }
 }
 
-Input.propTypes = {
+UnconnectedInput.propTypes = {
   success: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({ success }) => ({ success });
 
-export default connect(mapStateToProps, ({ guessWord }))(Input);
+export default connect(mapStateToProps, ({ guessWord }))(UnconnectedInput);

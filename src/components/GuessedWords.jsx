@@ -6,9 +6,9 @@ const GuessedWords = ({ guessWords }) => {
 
   if (!guessWords.length) {
     contents = (
-      <span data-test="guess-instructions">
+      <h4 data-test="guess-instructions">
         Try to guess the secret word!
-      </span>
+      </h4>
     );
   } else {
     contents = (
